@@ -1,0 +1,5 @@
+- name: Create folders for first application
+  ansible.builtin.file:
+    path: "/var/{{ app_env }}/app1"
+    state: directory
+    mode: '0755'

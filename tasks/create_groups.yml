@@ -1,0 +1,7 @@
+- name: Create groups
+  ansible.builtin.group:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - "admins"
+    - "developers"

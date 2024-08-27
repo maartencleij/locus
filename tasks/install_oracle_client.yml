@@ -1,0 +1,9 @@
+- name: Install Oracle client
+  ansible.builtin.yum:
+    name: oracle-instantclient18.5-basic
+    state: present
+
+- name: Run Oracle client installer with response file
+  command: ./runInstaller -silent -responseFile /path/to/response_file
+  args:
+    chdir: /path/to/oracle_installer_directory

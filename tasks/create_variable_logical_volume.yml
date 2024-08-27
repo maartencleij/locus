@@ -1,0 +1,17 @@
+- name: Create variable-based logical volume
+  lvol:
+    vg: "{{ volume_group_name }}"
+    lv: "lv_{{ dc_name }}"
+    size: 10g
+
+- name: Format the variable-based logical volume
+  filesystem:
+    fstype: ext4
+    dev: "/dev/{{ volume_group_name }}/lv_{{ dc_name }}"
+
+- name: Mount the variable-based logical volume
+  mount:
+    path: "/mnt/{{ dc_name }}"
+    src: "/dev/{{ volume_group_name }}/lv_{{ dc_name }}"
+    fstype: ext4
+    state: mounted

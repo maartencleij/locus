@@ -1,0 +1,17 @@
+- name: Create logical volume
+  lvol:
+    vg: "{{ volume_group_name }}"
+    lv: "{{ logical_volume_name }}"
+    size: 10g
+
+- name: Format the logical volume
+  filesystem:
+    fstype: ext4
+    dev: "/dev/{{ volume_group_name }}/{{ logical_volume_name }}"
+
+- name: Mount the logical volume
+  mount:
+    path: "{{ mount_point }}"
+    src: "/dev/{{ volume_group_name }}/{{ logical_volume_name }}"
+    fstype: ext4
+    state: mounted

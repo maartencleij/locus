@@ -1,0 +1,10 @@
+- name: Replace existing server entries with pool entries
+  ansible.builtin.lineinfile:
+    path: /etc/chrony.conf
+    regexp: '^server'
+    line: "{{ item }}"
+    state: present
+  loop:
+    - "pool 172.25.5.110 iburst"
+    - "pool 172.25.5.111 iburst"
+  notify: Restart chronyd

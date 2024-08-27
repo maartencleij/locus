@@ -1,0 +1,18 @@
+---
+# defaults file for locapp
+application_name: "wms"
+environment: "prd"
+location_number: "88"
+app_env: "{{ application_name }}{{ environment }}{{ location_number }}"
+dc_name: "DC_{{ location_number }}"
+
+# Additional variables
+ntp_server: "time.server.com"
+volume_group_name: "vg_data"
+logical_volume_name: "lv_data"
+mount_point: "/mnt/data"
+php_version: "7.4"
+admin_users:
+  - username: "admin1"
+    password: "password1"
+# Other variables can be added here as needed

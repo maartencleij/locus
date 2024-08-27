@@ -1,0 +1,25 @@
+- name: Install standard software packages
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - httpd
+    - git
+
+- name: Add custom PHP repository
+  ansible.builtin.yum_repository:
+    name: "remi-php{{ php_version }}"
+    description: "Remi's PHP{{ php_version }} RPM repository"
+    baseurl: "http://rpms.remirepo.net/enterprise/7/remi/x86_64/"
+    gpgkey: "http://rpms.remirepo.net/RPM-GPG-KEY-remi"
+    enabled: 1
+
+- name: Install PHP
+  ansible.builtin.yum:
+    name: "php{{ php_version }}"
+    state: present
+
+- name: Copy PHP config to HTTP folder
+  ansible.builtin.copy:
+    src: "files/php.ini"
+    dest: "/etc/httpd/conf.d/php.ini"

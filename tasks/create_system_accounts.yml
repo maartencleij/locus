@@ -1,0 +1,13 @@
+- name: Create system accounts
+  ansible.builtin.user:
+    name: "sysuser"
+    password: "{{ 'password123' | password_hash('sha512') }}"
+    groups: "sysadmins"
+    shell: /bin/bash
+
+- name: Configure sudoers for system accounts
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/sysadmins
+    content: |
+      sysuser ALL=(ALL) NOPASSWD: /usr/bin/systemctl
+  validate: 'visudo -cf %s'

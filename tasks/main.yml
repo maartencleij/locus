@@ -1,0 +1,15 @@
+---
+# tasks file for locapp
+- import_tasks: configure_chrony.yml
+- import_tasks: create_volume_group.yml
+- import_tasks: create_logical_volume.yml
+- import_tasks: create_variable_logical_volume.yml
+- import_tasks: install_software.yml
+- import_tasks: create_groups.yml
+- import_tasks: create_admin_users.yml
+- import_tasks: create_system_accounts.yml
+- import_tasks: disable_firewalld.yml
+- import_tasks: set_selinux_permissive.yml
+- import_tasks: create_app1_folders.yml
+- import_tasks: create_app2_folders.yml
+- import_tasks: install_oracle_client.yml
