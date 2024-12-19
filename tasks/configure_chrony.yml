@@ -1,3 +1,4 @@
+---
 - name: Replace existing server entries with pool entries
   ansible.builtin.lineinfile:
     path: /etc/chrony.conf

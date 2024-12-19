@@ -1,6 +1,7 @@
+---
 - name: Disable and mask firewalld
   ansible.builtin.systemd:
     name: firewalld
-    enabled: no
-    masked: yes
+    enabled: false
+    masked: true
     state: stopped

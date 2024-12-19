@@ -1,3 +1,4 @@
+---
 - name: Create variable-based logical volume
   lvol:
     vg: "{{ volume_group_name }}"

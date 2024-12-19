@@ -1,3 +1,4 @@
+---
 - name: Install Oracle client
   ansible.builtin.yum:
     name: oracle-instantclient18.5-basic

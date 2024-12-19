@@ -1,3 +1,4 @@
+---
 - name: Install standard software packages
   ansible.builtin.yum:
     name: "{{ item }}"

@@ -1,3 +1,4 @@
+---
 - name: Set SELinux to permissive
   ansible.builtin.selinux:
     policy: targeted

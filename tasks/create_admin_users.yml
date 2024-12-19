@@ -1,3 +1,4 @@
+---
 - name: Create admin users
   ansible.builtin.user:
     name: "{{ item.username }}"
