@@ -1,5 +1,5 @@
 ---
 - name: Create volume group
   lvg:
-    vg: "{{ volume_group_name }}"
+    vg: "locusvg"
     pvs: "/dev/sdb"

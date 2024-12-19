@@ -1,8 +1,19 @@
 ---
+- name: create linux admin group
+  ansible.builtin.group:
+    name: smclnx
+    gid: 10001
+    state: present
+    
 - name: Create groups
   ansible.builtin.group:
     name: "{{ item }}"
+    gid: "{{ 12000 + loop.index0 }}"
     state: present
   loop:
-    - "admins"
-    - "developers"
+    - "simfb"
+    - "locweb"
+    - "mqm"
+    - "dba"
+    - "mft"
+    - "oinstall"

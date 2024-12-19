@@ -1,2 +1,43 @@
 ---
 # vars file for locapp
+dc_name: wmsprd60
+
+# Linux admin users
+admin_users:
+  - username: smcadm
+    password: '!!$6$0w/Da/LG$f5vbGZMAcoiz/qkiKHhfcuGtk/lE7Axqh7prbq3jweJ5vDW5jju3Ij8bpV/GRvCltqw.sdAT1aREZNVZDrr3O.'
+  - username: maartenc
+    password: '$6$hW.XHFVb$621HbxXs7U9WQ4Ps0p1UqYrLa.xvj8iPiFwGqkwfpfE9HGb6IMvMj/8G.VR76yxR0R3.s6ZUaEAKhAMKP.fL61'
+  - username: semh
+    password: '$6$jAKOjq4/$quDYc9xMeBKey.kEr5uacUv0TMINPs97dbpJFLj4nOX.VSspOoIUWuWR9OzvflQov0Jt9taJXmaSDSsW79sRE/'
+  - username: kooninga
+    password: '$6$3A4y6tFY$E3SUFL8ynNt1YAwsPlk2p.kWYyb.jh7whyOqpzYhAGANWBNizLDM6YsCzT/rATYZ9WRtUDVJen5IbkQbWw4NL0'
+  - username: kooninga
+    password: '$6$3YFwR60x$fLZkDWBgrUKeov.JIzBuiAkFpG1UsUgsAhJeIbDBCK.7a4zUqlo1PDKq38un5ZMDRFjSU.yVK1sj2zEC3niOX0'
+  - username: justinb
+    password: '$6$ZX8w0FSeb07hUSAZ$BkwVVBK3pAtb1zl0oqspuxRrDUGYxkGJtLC113pBpfZ5/Bp2dXbzetAlTWhw9GklkKv7PdtFBRSg5FQfTt5Vw0'
+
+# system users
+system_users:
+  - username: linuxlocus
+  - username: linuxcentric
+  - username: mqm
+  - username: mft
+  - username: centric
+  - username: oracle
+  - username: "{{ dc_name }}"
+
+# locus users
+locus_users:
+  - username: floressej
+  - username: rozasb
+
+# Jumbo users
+Jumbo_users:
+  - username: veltmanb
+  - username: smeetsn
+  - username: verheijm
+  - username: janardha
+  - username: sharmas
+  - username: verheijh
+
