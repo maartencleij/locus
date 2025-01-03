@@ -1,18 +1,86 @@
 ---
-- name: Create logical volume
-  lvol:
-    vg: "{{ volume_group_name }}"
-    lv: "{{ logical_volume_name }}"
-    size: 10g
+- name: Create logical volumes
+  block:
+    - name: Create logical volume interfacelv (25G)
+      community.general.lv:
+        vg: locusvg
+        lv: interfacelv
+        size: 25G
+        state: present
+      become: true
 
-- name: Format the logical volume
-  filesystem:
-    fstype: ext4
-    dev: "/dev/{{ volume_group_name }}/{{ logical_volume_name }}"
+    - name: Create logical volume beheerlv (50G)
+      community.general.lv:
+        vg: locusvg
+        lv: beheerlv
+        size: 50G
+        state: present
+      become: true
 
-- name: Mount the logical volume
-  mount:
-    path: "{{ mount_point }}"
-    src: "/dev/{{ volume_group_name }}/{{ logical_volume_name }}"
-    fstype: ext4
-    state: mounted
+    - name: Create logical volume oraclelv (10G)
+      community.general.lv:
+        vg: locusvg
+        lv: oraclelv
+        size: 10G
+        state: present
+      become: true
+
+- name: Format logical volumes as XFS
+  block:
+    - name: Format interfacelv as XFS
+      ansible.builtin.filesystem:
+        fstype: xfs
+        dev: /dev/locusvg/interfacelv
+      become: true
+
+    - name: Format beheerlv as XFS
+      ansible.builtin.filesystem:
+        fstype: xfs
+        dev: /dev/locusvg/beheerlv
+      become: true
+
+    - name: Format oraclelv as XFS
+      ansible.builtin.filesystem:
+        fstype: xfs
+        dev: /dev/locusvg/oraclelv
+      become: true
+
+- name: Create mount points
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - { path: /interface }
+    - { path: /beheer }
+    - { path: /u01 }
+  become: true
+
+- name: Persistently mount logical volumes
+  block:
+    - name: Add interfacelv to fstab
+      ansible.builtin.mount:
+        path: /interface
+        src: /dev/locusvg/interfacelv
+        fstype: xfs
+        opts: defaults
+        state: mounted
+      become: true
+
+    - name: Add beheerlv to fstab
+      ansible.builtin.mount:
+        path: /beheer
+        src: /dev/locusvg/beheerlv
+        fstype: xfs
+        opts: defaults
+        state: mounted
+      become: true
+
+    - name: Add oraclelv to fstab
+      ansible.builtin.mount:
+        path: /u01
+        src: /dev/locusvg/oraclelv
+        fstype: xfs
+        opts: defaults
+        state: mounted
+      become: true
