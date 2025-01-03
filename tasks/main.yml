@@ -1,6 +1,6 @@
 ---
 # tasks file for locapp
-# - import_tasks: create_volume_group.yml
+- import_tasks: create_volume_group.yml
 # - import_tasks: create_logical_volume.yml
 # - import_tasks: create_variable_logical_volume.yml
 # - import_tasks: configure_chrony.yml
